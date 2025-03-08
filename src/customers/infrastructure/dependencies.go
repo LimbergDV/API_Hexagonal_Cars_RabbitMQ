@@ -7,5 +7,5 @@ func GoMySQL() {
 }
 
 func GetMySQL() *MySQL {
-	return mysql 
+	return mysql
 }
