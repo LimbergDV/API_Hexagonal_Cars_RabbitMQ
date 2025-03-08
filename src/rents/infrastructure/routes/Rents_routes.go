@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterRouter(r *gin.Engine) {
+func Routes (r *gin.Engine) {
 	rentsRouter := r.Group("/rents") 
 	{
 		rentsRouter.POST("/", controllers.NewCreateRentController().AddRent)

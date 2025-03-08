@@ -2,7 +2,8 @@ package infrastructure
 
 import (
 	"fmt"
-	"api-hexagonal-cars/src/core"
+
+	core "api-hexagonal-cars/src/Core"
 	"api-hexagonal-cars/src/rents/domain"
 )
 
