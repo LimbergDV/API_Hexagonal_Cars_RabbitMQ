@@ -20,8 +20,8 @@ func NewMySQL() *MySQL {
 }
 
 func (mysql *MySQL) Save(customer domain.Customer) (uint, error) {
-	query := "INSERT INTO customers (name, last_name, phone_number, curp, number_license) VALUES (?, ?, ?, ?, ?)"
-	res, err := mysql.conn.ExecutePreparedQuery(query, customer.Name, customer.Last_name, customer.Phone_number, customer.Curp, customer.Number_license)
+	query := "INSERT INTO customers (first_name, last_name, phone_number, email, number_license) VALUES (?, ?, ?, ?, ?)"
+	res, err := mysql.conn.ExecutePreparedQuery(query, customer.First_Name, customer.Last_name, customer.Phone_number, customer.Email, customer.Number_license)
 	if err != nil {
 		fmt.Println("Error al preparar la consulta:", err)
 		return 0, err
@@ -44,7 +44,7 @@ func (mysql *MySQL) GetAll() []domain.Customer {
 
 	for rows.Next() {
 		var c domain.Customer
-		if err := rows.Scan(&c.Id, &c.Name, &c.Last_name, &c.Phone_number, &c.Curp, &c.Number_license); err != nil {
+		if err := rows.Scan(&c.Id, &c.First_Name, &c.Last_name, &c.Phone_number, &c.Email, &c.Number_license); err != nil {
 			fmt.Println("Error al escanear la fila:", err)
 		} else {
 			customers = append(customers, c)
@@ -75,8 +75,8 @@ func (mysql *MySQL) Delete(id int) (uint, error) {
 }
 
 func (mysql *MySQL) Update(id int, customer domain.Customer) (uint, error) {
-	query := "UPDATE customers SET name = ?, last_name = ?, phone_number = ?, curp = ?, number_license = ? WHERE id = ?"
-	res, err := mysql.conn.ExecutePreparedQuery(query, &customer.Name, &customer.Last_name, &customer.Phone_number, &customer.Curp, &customer.Number_license, id)
+	query := "UPDATE customers SET first_name = ?, last_name = ?, phone_number = ?, email = ?, number_license = ? WHERE id = ?"
+	res, err := mysql.conn.ExecutePreparedQuery(query, &customer.First_Name, &customer.Last_name, &customer.Phone_number, &customer.Email, &customer.Number_license, id)
 	if err != nil {
 		fmt.Println("Error al ejecutar la consulta:", err)
 		return 0, err
@@ -92,7 +92,7 @@ func (mysql *MySQL) Update(id int, customer domain.Customer) (uint, error) {
 func (mysql *MySQL) GetById(id int) (domain.Customer, error) {
 	var customer domain.Customer
 
-	query := "SELECT id, name, last_name, phone_number, curp, number_license FROM customers WHERE id = ?"
+	query := "SELECT id, name, last_name, phone_number, email, number_license FROM customers WHERE id = ?"
 	rows := mysql.conn.FetchRows(query, id)
 
 	if rows == nil {
@@ -102,7 +102,7 @@ func (mysql *MySQL) GetById(id int) (domain.Customer, error) {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&customer.Id, &customer.Name, &customer.Last_name, &customer.Phone_number, &customer.Curp, &customer.Number_license)
+		err := rows.Scan(&customer.Id, &customer.First_Name, &customer.Last_name, &customer.Phone_number, &customer.Email, &customer.Number_license)
 		if err != nil {
 			return customer, err
 		}

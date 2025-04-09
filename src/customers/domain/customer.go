@@ -2,9 +2,9 @@ package domain
 
 type Customer struct {
 	Id int
-	Name string
+	First_Name string
 	Last_name string
+	Email string
 	Phone_number string
-	Curp string
 	Number_license string
 }

@@ -15,7 +15,7 @@ func main () {
 	customers.GoMySQL()
 
 	r := gin.Default()
-	r.Use((cors.Default()))
+	r.Use(cors.Default())
 
 	routesCustomers.Routes(r)
 	routesRents.Routes(r)

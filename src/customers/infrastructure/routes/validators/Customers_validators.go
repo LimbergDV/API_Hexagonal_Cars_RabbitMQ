@@ -12,7 +12,7 @@ func CheckCustomer(customer domain.Customer) error {
 		return errors.New("El ID del cliente debe ser mayor o igual a 0")
 	}
 
-	if customer.Name == "" {
+	if customer.First_Name == "" {
 		return errors.New("El nombre del cliente no puede estar vacío")
 	}
 
@@ -20,12 +20,12 @@ func CheckCustomer(customer domain.Customer) error {
 		return errors.New("El apellido del cliente no puede estar vacío")
 	}
 
-	if len(customer.Phone_number) != 10 {
-		return errors.New("El número de teléfono debe tener exactamente 10 dígitos")
+	if customer.Email == "" {
+		return errors.New("El email no puede enviarse vacío")
 	}
 
-	if customer.Curp == "" || len(customer.Curp) != 18 {
-		return errors.New("El CURP debe tener exactamente 18 caracteres")
+	if len(customer.Phone_number) != 10 {
+		return errors.New("El número de teléfono debe tener exactamente 10 dígitos")
 	}
 
 	if customer.Number_license == "" {
