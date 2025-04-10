@@ -41,6 +41,5 @@ func (cc_c *CreateCustomerController) Run (c *gin.Context){
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 	} else {
 		c.JSON(http.StatusCreated, gin.H {"mensaje": "Cliente creado"})
-		c.JSON(http.StatusOK, customers)
 	}
 }

@@ -41,8 +41,8 @@ func (r *RabbitMQ) ReturnCar(rent domain.Rent) {
 func (r *RabbitMQ) prepareToMessage(body []byte) {
 	// Declaración del exchange (intercambiador):
 	r.ch.ExchangeDeclare(
-		"exchange_rents",   // name
-		"direct", // type
+		"exchanges_cars",   // name
+		"topic", // type
 		true,     // durable
 		false,    // auto-deleted
 		false,    // internal
@@ -54,7 +54,7 @@ func (r *RabbitMQ) prepareToMessage(body []byte) {
 	defer cancel()
 	  
 	r.ch.PublishWithContext(ctx,
-		"exchange_rents",     // exchange
+		"exchanges_cars",     // exchange
 		"rents", // routing key
 		false,  // mandatory
 		false,  // immediate

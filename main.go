@@ -1,12 +1,11 @@
 package main
 
 import (
+	core "api-hexagonal-cars/src/Core"
 	customers "api-hexagonal-cars/src/customers/infrastructure"
 	routesCustomers "api-hexagonal-cars/src/customers/infrastructure/routes"
 	infraCustomers "api-hexagonal-cars/src/rents/infrastructure"
 	routesRents "api-hexagonal-cars/src/rents/infrastructure/routes"
-
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,10 +14,11 @@ func main () {
 	customers.GoMySQL()
 
 	r := gin.Default()
-	r.Use(cors.Default())
+
+	core.InitCORS(r)
 
 	routesCustomers.Routes(r)
 	routesRents.Routes(r)
 	
-	r.Run(":8080")
+	r.Run(":8081")
 }
