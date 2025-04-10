@@ -29,11 +29,5 @@ func (galr *GetAllRentsController) GetAllRents(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status": true,
-		"links": gin.H{
-			"self": "http://localhost:8080/rents/",
-		},
-		"data": res,
-	})
+	c.JSON(http.StatusOK, gin.H{"rentas de carros": res})
 }
