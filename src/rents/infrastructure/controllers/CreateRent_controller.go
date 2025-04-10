@@ -60,7 +60,7 @@ func (cr_c *CreateRentController) AddRent(c *gin.Context) {
 	// Mandar al RentProcessor
 	cr_c.service.Run(rent)
 
-	c.JSON(http.StatusCreated, gin.H {"mensaje": "Producto creado"})
+	c.JSON(http.StatusCreated, gin.H {"mensaje": "Renta creada"})
 	c.JSON(http.StatusOK, rent)
 
 }

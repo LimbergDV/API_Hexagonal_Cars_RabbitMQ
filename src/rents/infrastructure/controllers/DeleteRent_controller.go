@@ -36,7 +36,7 @@ func (drc *DeleteRentController) DeleteRent(c *gin.Context) {
 	if rowsAffected == 0 {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"status": false,
-			"error": "No se pudo eliminar el préstamo: No se entontró la referencia o ocurrió algo más",
+			"error": "No se pudo eliminar la renta: No se entontró la referencia o ocurrió algo más",
 		})
 		return
 	}
@@ -50,6 +50,6 @@ func (drc *DeleteRentController) DeleteRent(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"status": true,
-		"message": "Recurso eliminado",
+		"message": "Renta eliminada",
 	})
 }

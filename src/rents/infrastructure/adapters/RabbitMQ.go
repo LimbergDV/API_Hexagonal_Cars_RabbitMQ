@@ -32,7 +32,7 @@ func (r *RabbitMQ) RentCar(rent domain.Rent) {
 	r.prepareToMessage(payload)
 }
 
-func (r *RabbitMQ) ReturnRent(rent domain.Rent) {
+func (r *RabbitMQ) ReturnCar(rent domain.Rent) {
 	payload, err := json.Marshal(rent)
 	failOnError(err, "Error al serializar Renta de carros a JSON")
 	r.prepareToMessage(payload)
@@ -55,7 +55,7 @@ func (r *RabbitMQ) prepareToMessage(body []byte) {
 	  
 	r.ch.PublishWithContext(ctx,
 		"exchange_rents",     // exchange
-		"prestamos", // routing key
+		"rents", // routing key
 		false,  // mandatory
 		false,  // immediate
 		amqp.Publishing {

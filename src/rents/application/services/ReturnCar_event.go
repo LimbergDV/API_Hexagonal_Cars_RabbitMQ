@@ -14,5 +14,5 @@ func NewReturnRentEvent(rmq repository.IRabbit) *ReturnCarEvent {
 }
 
 func (rce *ReturnCarEvent) Run(rent domain.Rent) {
-	rce.rmq.ReturnRent(rent)
+	rce.rmq.ReturnCar(rent)
 }
